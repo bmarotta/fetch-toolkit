@@ -1,4 +1,4 @@
-import { BasicAuthenticationProvider } from './authentication';
+import { AuthenticationProvider } from './authentication';
 import { fetchJson, RequestInitToolkit } from './fetch-toolkit';
 import { FetchGroupHandler } from './group';
 import { joinUrl } from './url';
@@ -10,7 +10,7 @@ export class API {
 
   constructor(
     public readonly baseUrl: string,
-    public authentication?: BasicAuthenticationProvider,
+    public authentication?: AuthenticationProvider,
     maxParallel?: number
   ) {
     if (maxParallel) {
