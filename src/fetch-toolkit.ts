@@ -8,6 +8,7 @@ export class FetchError extends Error {
     public readonly url: string,
     public readonly status: number,
     public readonly statusText: string,
+    public readonly responseText?: string
   ) {
     super(`Error retrieving ${url}: ${statusText} (${status})`);
   }
@@ -45,6 +46,9 @@ export interface RequestInitToolkit extends RequestInit {
 export async function fetchJson<T>(url: string, init?: RequestInitToolkit): Promise<T> {
   init = setHeader(init, HTTP_HEADER_ACCEPT, HTTP_HEADER_ACCEPT_JSON);
   const response = await doFetch(url, init);
+  if (response.status == 204) {
+    return undefined as T;
+  }
   const obj = (await response.json()) as T;
   return obj;
 }
@@ -56,8 +60,16 @@ async function doFetch(url: string, init?: RequestInitToolkit) {
         }
     }
     const response = await (init?.handler?.fetch ? init.handler.fetch(url, init) : fetch(url, init));
-    if (!response.ok) {
-        throw new FetchError(url, response.status, response.statusText);
+    if (!response.ok) {        
+        // Some APIs return an error response in case of errors. Try to fetch it
+        let responseText: string | undefined = undefined;
+        try {
+            responseText = await response.text();
+        }
+        catch {
+            // Ignore eventual errors that happen when getting the response text 
+        }
+        throw new FetchError(url, response.status, response.statusText, responseText);        
     }
     return response;
 }

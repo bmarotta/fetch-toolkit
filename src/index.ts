@@ -1,4 +1,4 @@
 export { API } from "./api";
-export { fetchJson, FetchDecorator as FetchInspector } from "./fetch-toolkit";
-export { AuthenticationProvider, BasicAuthenticationProvider } from "./authentication";
+export { fetchJson, FetchDecorator, FetchError } from "./fetch-toolkit";
+export { AuthenticationProvider, BasicAuthenticationProvider, BearerAuthenticationProvider } from "./authentication";
 

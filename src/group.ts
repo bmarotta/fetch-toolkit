@@ -75,7 +75,7 @@ export class FetchGroupHandler extends FetchHandler {
         console.log(`Finished request ${id}`);
     }
     const index = this.executing.findIndex(n => n.id == id);
-    if (!index) {
+    if (index == -1) {
       console.error(`Unexpected error. Fetch ${id} not found in executing list`);
     } else {
       this.executing.splice(index, 1);
