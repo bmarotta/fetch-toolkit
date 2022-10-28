@@ -43,4 +43,20 @@ export class API {
   async get<T>(endpoint: string, params?: any): Promise<T> {
     return this.call<T>('GET', endpoint, params);
   }
+
+  async delete<T>(endpoint: string, params?: any, body?: any): Promise<T> {
+    return this.call<T>('PUT', endpoint, params, body);
+  }
+
+  async patch<T>(endpoint: string, body: any, params?: any): Promise<T> {
+    return this.call<T>('PUT', endpoint, params, body);
+  }
+
+  async post<T>(endpoint: string, body: any, params?: any): Promise<T> {
+    return this.call<T>('POST', endpoint, params, body);
+  }
+
+  async put<T>(endpoint: string, body: any, params?: any): Promise<T> {
+    return this.call<T>('PUT', endpoint, params, body);
+  }
 }
