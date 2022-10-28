@@ -20,3 +20,12 @@ export class BasicAuthenticationProvider extends AuthenticationProvider {
         return `Basic ${basicAuthEncoded}`;
     }
 }
+
+export class BearerAuthenticationProvider extends AuthenticationProvider {
+    constructor (private token: string) {
+        super();   
+    }
+    protected getHeaderValue(): string {
+        return `Bearer ${this.token}`;
+    }
+}
