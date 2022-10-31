@@ -1,41 +1,6 @@
+import crypto from "crypto";
 import { HTTP_HEADER_ACCEPT, HTTP_HEADER_ACCEPT_JSON } from "./constants";
-
-/**
- * Error thrown on a faulty fetch request
- */
-export class FetchError extends Error {
-  constructor(
-    public readonly url: string,
-    public readonly status: number,
-    public readonly statusText: string,
-    public readonly responseText?: string
-  ) {
-    super(`Error retrieving ${url}: ${statusText} (${status})`);
-  }
-}
-
-/**
- * An decorator that can modify the request before sending
- */
-export abstract class FetchDecorator {
-    public abstract decorate(request: RequestInit): void;
-}
-
-/**
- * A class that handles the call to the fetch api itself
- */
- export abstract class FetchHandler {
-    public abstract fetch(url: string, init?: RequestInit): Promise<Response>;
-}
-
-/**
- * Toolkit extension for the fetch options
- */
-export interface RequestInitToolkit extends RequestInit {
-    decorators?: FetchDecorator[];
-    handler?: FetchHandler;
-    uid?: string;
-}
+import { FetchError, RequestInitToolkit } from "./types";
 
 /**
  * Helper method to get a response as JSON. Throws a FetchError in case of faulty Status code
@@ -44,8 +9,8 @@ export interface RequestInitToolkit extends RequestInit {
  * @returns A JSON object
  */
 export async function fetchJson<T>(url: string, init?: RequestInitToolkit): Promise<T> {
-  init = setHeader(init, HTTP_HEADER_ACCEPT, HTTP_HEADER_ACCEPT_JSON);
-  const response = await doFetch(url, init);
+  init = fetchSetHeader(init, HTTP_HEADER_ACCEPT, HTTP_HEADER_ACCEPT_JSON);
+  const response = await fetchToolkit(url, init);
   if (response.status == 204) {
     return undefined as T;
   }
@@ -53,13 +18,25 @@ export async function fetchJson<T>(url: string, init?: RequestInitToolkit): Prom
   return obj;
 }
 
-async function doFetch(url: string, init?: RequestInitToolkit) {
-    if (init?.decorators) {
-        for (const decorator of init.decorators) {
-            decorator.decorate(init);
-        }
+export async function fetchToolkit(url: string, init?: RequestInitToolkit) {
+    let response: Response;
+
+    if (init?.handler?.fetch) {
+        // If we have a fetch handler, just call it. It is responsible for calling the different decorator
+        response = await init.handler.fetch(url, init);
+    } else {
+        // Call any available request decorator
+        fetchDecorateRequest(init, url);
+
+        // Call fetch
+        response = await (init?.handler?.fetch ? init.handler.fetch(url, init) : fetch(url, init));
+        
+        // Call any available response decorator
+        fetchDecorateResponse(init, url, response);
     }
-    const response = await (init?.handler?.fetch ? init.handler.fetch(url, init) : fetch(url, init));
+    
+
+    // Check the response result
     if (!response.ok) {        
         // Some APIs return an error response in case of errors. Try to fetch it
         let responseText: string | undefined = undefined;
@@ -74,10 +51,31 @@ async function doFetch(url: string, init?: RequestInitToolkit) {
     return response;
 }
 
-export function setHeader(init: RequestInitToolkit | undefined, headerName: string, headerValue: string): RequestInit {
+function fetchDecorateResponse(init: RequestInitToolkit | undefined, url: string, response: Response) {
+    if (init?.decorators) {
+        for (const decorator of init.decorators) {
+            if (decorator.decorateResponse && decorator.decorateResponse instanceof Function) {
+                decorator.decorateResponse(url, init, response);
+            }
+        }
+    }
+}
+
+function fetchDecorateRequest(init: RequestInitToolkit | undefined, url: string) {
+    if (init?.decorators) {
+        for (const decorator of init.decorators) {
+            if (decorator.decorateRequest && decorator.decorateRequest instanceof Function) {
+                decorator.decorateRequest(url, init);
+            }
+        }
+    }
+}
+
+export function fetchSetHeader(init: RequestInitToolkit | undefined, headerName: string, headerValue: string): RequestInit {
     if (!init) {
         init = {}
     }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const headers = init.headers ?? {} as any;
 
     // Check if the header has the has and set methods
@@ -90,5 +88,12 @@ export function setHeader(init: RequestInitToolkit | undefined, headerName: stri
         init.headers = headers;
     }
     return init;
+}
+
+export function fetchEnsureUid(init: RequestInitToolkit) {
+    if (!init.uid) {
+        const randomValues = crypto.randomBytes(6);
+        init.uid = (new Date()).toISOString().substring(2).replace(/[\:\-TZ\.]*/g, '') + randomValues.toString('base64');
+    }
 }
 

@@ -1,5 +1,6 @@
-import { FetchHandler, RequestInitToolkit } from './fetch-toolkit';
-import crypto from "crypto";
+import { FetchHandler, RequestInitToolkit } from './types';
+import { fetchEnsureUid, fetchToolkit } from './fetch-toolkit';
+import { FetchLogger } from './logging';
 
 type FetchRequest = {
   id: string;
@@ -14,16 +15,14 @@ export class FetchGroupHandlerError extends Error {}
 export class FetchGroupHandler extends FetchHandler {
   private queue: FetchRequest[] = [];
   private executing: FetchRequest[] = [];
-  constructor(public readonly baseUrl: string, public readonly maxParallel: number = 0, public debug: boolean = false) {
+  constructor(public readonly baseUrl: string, public readonly maxParallel: number = 0) {
     super();
   }
   public fetch(url: string, init?: RequestInitToolkit | undefined): Promise<Response> {
     // Initialize unique id
     init = init ?? {};
-    if (!init.uid) {
-      init.uid = crypto.randomUUID();
-    }
-    const fetchId = init.uid;
+    fetchEnsureUid(init);
+    const fetchId = init.uid ?? "";
 
     // Check if fetch with unique id already exists
     if (this.queue.find(n => n.id == fetchId)) {
@@ -49,11 +48,15 @@ export class FetchGroupHandler extends FetchHandler {
   }
 
   startFetch(fetchRequest: FetchRequest): Promise<Response> {
-    if (this.debug) {
-        console.log(`Starting request ${fetchRequest.id} to url ${fetchRequest.url}. ${this.executing.length} requests on going. ${this.enqueue.length} in the queue`);
+    FetchLogger.logAdditionalAction(`Starting request ${fetchRequest.id} to url ${fetchRequest.url}. ${this.executing.length} requests on going. ${this.enqueue.length} in the queue`);
+    
+    // Remove the handler from the fetch
+    const initCopy = fetchRequest.init;
+    if (initCopy) {
+      delete initCopy.handler;
     }
     // Do the actual fetch
-    fetchRequest.promise = fetch(fetchRequest.url, fetchRequest.init);
+    fetchRequest.promise = fetchToolkit(fetchRequest.url, initCopy);
 
     // Add to the executing list
     this.executing.push(fetchRequest);
@@ -65,18 +68,16 @@ export class FetchGroupHandler extends FetchHandler {
 
     // Add resolve and reject handlers to remove from the lists
     fetchRequest.promise
-      .then(() => this.removeFromExecuting(fetchRequest.id))
-      .catch(() => this.removeFromExecuting(fetchRequest.id));
+      .then(() => this.removeFromExecuting(fetchRequest))
+      .catch(() => this.removeFromExecuting(fetchRequest));
 
     return fetchRequest.promise;
   }
-  removeFromExecuting(id: string): any {
-    if (this.debug) {
-        console.log(`Finished request ${id}`);
-    }
+  removeFromExecuting(fetchRequest: FetchRequest): void {
+    const id = fetchRequest.id;
     const index = this.executing.findIndex(n => n.id == id);
     if (index == -1) {
-      console.error(`Unexpected error. Fetch ${id} not found in executing list`);
+      FetchLogger.logAdditionalAction(`Unexpected error. Fetch ${id} not found in executing list`, fetchRequest.init);
     } else {
       this.executing.splice(index, 1);
     }
@@ -89,9 +90,7 @@ export class FetchGroupHandler extends FetchHandler {
   }
 
   enqueue(fetchRequest: FetchRequest): Promise<Response> {
-    if (this.debug) {
-        console.log(`Enqueueing request ${fetchRequest.id} to url ${fetchRequest.url}`);
-    }
+    FetchLogger.logAdditionalAction(`Enqueueing request ${fetchRequest.id} to url ${fetchRequest.url}`, fetchRequest.init);
     // Add to the list of
     this.queue.push(fetchRequest);
 

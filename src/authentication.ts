@@ -1,11 +1,12 @@
 import { HTTP_HEADER_AUTHORIZATION } from "./constants";
-import { FetchDecorator, setHeader } from "./fetch-toolkit";
+import { FetchDecorator } from "./types";
+import { fetchSetHeader } from "./fetch-toolkit";
 
-export abstract class AuthenticationProvider extends FetchDecorator {
-    public decorate(init: RequestInit) {
+export abstract class AuthenticationProvider implements FetchDecorator {
+    public decorateRequest(url: string, init: RequestInit) {
         const headerValue = this.getHeaderValue();
         if (headerValue) {
-            setHeader(init, HTTP_HEADER_AUTHORIZATION, headerValue)
+            fetchSetHeader(init, HTTP_HEADER_AUTHORIZATION, headerValue)
         }
     }
     protected abstract getHeaderValue(): string;
