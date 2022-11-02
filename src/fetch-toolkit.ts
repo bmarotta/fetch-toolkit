@@ -1,6 +1,6 @@
-import crypto from "crypto";
 import { HTTP_HEADER_ACCEPT, HTTP_HEADER_ACCEPT_JSON } from "./constants";
 import { FetchError, RequestInitToolkit } from "./types";
+import { generateUidBasedOnTimestamp } from "./util";
 
 /**
  * Helper method to get a response as JSON. Throws a FetchError in case of faulty Status code
@@ -92,8 +92,7 @@ export function fetchSetHeader(init: RequestInitToolkit | undefined, headerName:
 
 export function fetchEnsureUid(init: RequestInitToolkit) {
     if (!init.uid) {
-        const randomValues = crypto.randomBytes(6);
-        init.uid = (new Date()).toISOString().substring(2).replace(/[\:\-TZ\.]*/g, '') + randomValues.toString('base64');
+        init.uid = generateUidBasedOnTimestamp();
     }
 }
 

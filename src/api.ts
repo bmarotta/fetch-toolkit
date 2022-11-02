@@ -21,7 +21,7 @@ export class API {
     public logger?: FetchLogger,
   ) {
     if (maxParallel) {
-      this.groupHandler = new FetchGroupHandler(baseUrl, maxParallel);
+      this.groupHandler = new FetchGroupHandler(maxParallel);
     }
   }
 
