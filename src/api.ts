@@ -2,7 +2,7 @@ import { AuthenticationProvider } from './authentication';
 import { fetchJson } from './fetch-toolkit';
 import { FetchGroupHandler } from './group';
 import { FetchLogger } from './logging';
-import { HttpMethod, RequestInitToolkit } from './types';
+import { FetchDecorator, HttpMethod, RequestInitToolkit } from './types';
 import { joinUrl } from './url';
 
 // Params type is defined as a collection og strings in nodes: string[][] | Record<string, string> | string | URLSearchParams
@@ -19,6 +19,7 @@ export class API {
     public authentication?: AuthenticationProvider,
     maxParallel?: number,
     public logger?: FetchLogger,
+    public customDecorators?: FetchDecorator[]
   ) {
     if (maxParallel) {
       this.groupHandler = new FetchGroupHandler(maxParallel);
@@ -35,6 +36,9 @@ export class API {
     }
     if (this.logger) {
       options.decorators?.push(this.logger);
+    }
+    if (this.customDecorators) {
+      options.decorators?.push(...this.customDecorators);
     }
     options.handler = this.groupHandler;
     if (method !== 'GET' && body) {
@@ -55,11 +59,11 @@ export class API {
   }
 
   async delete<T>(endpoint: string, params?: ParamsType, body?: unknown): Promise<T> {
-    return this.call<T>('PUT', endpoint, params, body);
+    return this.call<T>('DELETE', endpoint, params, body);
   }
 
   async patch<T>(endpoint: string, body: unknown, params?: ParamsType): Promise<T> {
-    return this.call<T>('PUT', endpoint, params, body);
+    return this.call<T>('PATCH', endpoint, params, body);
   }
 
   async post<T>(endpoint: string, body: unknown, params?: ParamsType): Promise<T> {
