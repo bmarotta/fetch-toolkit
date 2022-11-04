@@ -1,76 +1,81 @@
-import { AuthenticationProvider } from './authentication';
-import { fetchJson } from './fetch-toolkit';
-import { FetchGroupHandler } from './group';
-import { FetchLogger } from './logging';
-import { FetchDecorator, HttpMethod, RequestInitToolkit } from './types';
-import { joinUrl } from './url';
+import { AuthenticationProvider } from "./authentication";
+import { fetchJson } from "./fetch-toolkit";
+import { FetchGroupHandler } from "./group";
+import { FetchLogger } from "./logging";
+import { FetchDecorator, HttpMethod, RequestInitToolkit } from "./types";
+import { joinUrl } from "./url";
 
 // Params type is defined as a collection og strings in nodes: string[][] | Record<string, string> | string | URLSearchParams
 // Nevertheless this loses the power of having strongly types params
 // For this reason we decided to set the ParamsType as any
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type ParamsType = any; 
+type ParamsType = any;
 
 export class API {
-  groupHandler?: FetchGroupHandler;
+    groupHandler?: FetchGroupHandler;
 
-  constructor(
-    public readonly baseUrl: string,
-    public authentication?: AuthenticationProvider,
-    maxParallel?: number,
-    public logger?: FetchLogger,
-    public customDecorators?: FetchDecorator[]
-  ) {
-    if (maxParallel) {
-      this.groupHandler = new FetchGroupHandler(maxParallel);
+    constructor(
+        public readonly baseUrl: string,
+        public authentication?: AuthenticationProvider,
+        maxParallel?: number,
+        public logger?: FetchLogger,
+        public customDecorators?: FetchDecorator[],
+    ) {
+        if (maxParallel) {
+            this.groupHandler = new FetchGroupHandler(maxParallel);
+        }
     }
-  }
 
-  async call<T>(method: HttpMethod, endpoint: string, params?: ParamsType, body?: unknown): Promise<T> {
-    const options: RequestInitToolkit = {
-      method: method,
-      decorators: [],
-    };
-    if (this.authentication) {
-      options.decorators?.push(this.authentication);
+    async call<T>(
+        method: HttpMethod,
+        endpoint: string,
+        params?: ParamsType,
+        body?: unknown,
+    ): Promise<T> {
+        const options: RequestInitToolkit = {
+            method: method,
+            decorators: [],
+        };
+        if (this.authentication) {
+            options.decorators?.push(this.authentication);
+        }
+        if (this.logger) {
+            options.decorators?.push(this.logger);
+        }
+        if (this.customDecorators) {
+            options.decorators?.push(...this.customDecorators);
+        }
+        options.handler = this.groupHandler;
+        if (method !== "GET" && body) {
+            options.headers = {
+                "Content-Type": "application/json",
+            };
+            options.body = JSON.stringify(body);
+        }
+        const paramStr = params ? new URLSearchParams(params).toString() : "";
+        const fullUrl = paramStr
+            ? joinUrl([this.baseUrl, endpoint, "?" + paramStr])
+            : joinUrl([this.baseUrl, endpoint]);
+        return fetchJson<T>(fullUrl, options);
     }
-    if (this.logger) {
-      options.decorators?.push(this.logger);
+
+    async get<T>(endpoint: string, params?: ParamsType): Promise<T> {
+        return this.call<T>("GET", endpoint, params);
     }
-    if (this.customDecorators) {
-      options.decorators?.push(...this.customDecorators);
+
+    async delete<T>(endpoint: string, params?: ParamsType, body?: unknown): Promise<T> {
+        return this.call<T>("DELETE", endpoint, params, body);
     }
-    options.handler = this.groupHandler;
-    if (method !== 'GET' && body) {
-      options.headers = {
-        'Content-Type': 'application/json',
-      };
-      options.body = JSON.stringify(body);
+
+    async patch<T>(endpoint: string, body: unknown, params?: ParamsType): Promise<T> {
+        return this.call<T>("PATCH", endpoint, params, body);
     }
-    const paramStr = params ? new URLSearchParams(params).toString() : '';
-    const fullUrl = paramStr
-      ? joinUrl([this.baseUrl, endpoint, '?' + paramStr])
-      : joinUrl([this.baseUrl, endpoint]);
-    return fetchJson<T>(fullUrl, options);
-  }
 
-  async get<T>(endpoint: string, params?: ParamsType): Promise<T> {
-    return this.call<T>('GET', endpoint, params);
-  }
+    async post<T>(endpoint: string, body: unknown, params?: ParamsType): Promise<T> {
+        return this.call<T>("POST", endpoint, params, body);
+    }
 
-  async delete<T>(endpoint: string, params?: ParamsType, body?: unknown): Promise<T> {
-    return this.call<T>('DELETE', endpoint, params, body);
-  }
-
-  async patch<T>(endpoint: string, body: unknown, params?: ParamsType): Promise<T> {
-    return this.call<T>('PATCH', endpoint, params, body);
-  }
-
-  async post<T>(endpoint: string, body: unknown, params?: ParamsType): Promise<T> {
-    return this.call<T>('POST', endpoint, params, body);
-  }
-
-  async put<T>(endpoint: string, body: unknown, params?: ParamsType): Promise<T> {
-    return this.call<T>('PUT', endpoint, params, body);
-  }
+    async put<T>(endpoint: string, body: unknown, params?: ParamsType): Promise<T> {
+        return this.call<T>("PUT", endpoint, params, body);
+    }
 }
