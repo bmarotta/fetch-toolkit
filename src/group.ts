@@ -1,15 +1,15 @@
 import { FetchHandler, RequestInitToolkit } from "./types";
 import { fetchEnsureUid, fetchToolkit } from "./fetch-toolkit";
 import { FetchLogger } from "./logging";
-import { ParallelPromiseHandler } from "./parallel-promise-handler";
+import { PromiseConcurrentQueue } from "./parallel-promise-handler";
 
 export class FetchGroupHandlerError extends Error {}
 
 export class FetchGroupHandler extends FetchHandler {
-    private parallelPromiseHandler: ParallelPromiseHandler<Response>;
+    private parallelPromiseHandler: PromiseConcurrentQueue<Response>;
     constructor(public readonly maxParallel: number) {
         super();
-        this.parallelPromiseHandler = new ParallelPromiseHandler<Response>(
+        this.parallelPromiseHandler = new PromiseConcurrentQueue<Response>(
             maxParallel,
             (event, id, data, message) => {
                 switch (event) {

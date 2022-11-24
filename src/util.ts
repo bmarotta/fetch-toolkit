@@ -1,7 +1,7 @@
 import crypto from "crypto";
 
-export function generateUidBasedOnTimestamp() {
-    const randomValues = crypto.randomBytes(6);
+export function generateUidBasedOnTimestamp(randomPrecision = 6) {
+    const randomValues = crypto.randomBytes(randomPrecision);
     return (
         new Date()
             .toISOString()

@@ -7,7 +7,7 @@ export {
 } from "./authentication";
 export { FetchLogger, FetchConsoleLogger } from "./logging";
 export { FetchDecorator, FetchError, FetchHandler, HttpMethod, RequestInitToolkit } from "./types";
-export { ParallelPromiseHandler } from "./parallel-promise-handler";
+export { PromiseConcurrentQueue as ParallelPromiseHandler } from "./parallel-promise-handler";
 export {
     HTTP_HEADER_CONTENT_TYPE,
     HTTP_HEADER_ACCEPT,

@@ -1,6 +1,6 @@
 {
   "name": "fetch-toolkit",
-  "version": "1.0.0",
+  "version": "0.1.1",
   "description": "Fetch API Toolkit for increased productivity",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -15,15 +15,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/easesolutions/fetch-toolkit.git"
+    "url": "git+https://github.com/bmarotta/fetch-toolkit.git"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/easesolutions/fetch-toolkit/issues"
+    "url": "https://github.com/bmarotta/fetch-toolkit/issues"
   },
-  "homepage": "https://github.com/easesolutions/fetch-toolkit#readme",
+  "homepage": "https://github.com/bmarotta/fetch-toolkit#readme",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^22.0.1",
     "@rollup/plugin-json": "^4.1.0",

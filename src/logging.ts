@@ -2,8 +2,7 @@ import { fetchEnsureUid } from "./fetch-toolkit";
 import { FetchDecorator, RequestInitToolkit } from "./types";
 
 export abstract class FetchLogger implements FetchDecorator {
-    constructor (protected logBody = false, protected logHeaders = false) {        
-    }
+    constructor(protected logBody = false, protected logHeaders = false) {}
 
     decorateRequest(url: string, request: RequestInitToolkit) {
         fetchEnsureUid(request);
@@ -11,7 +10,9 @@ export abstract class FetchLogger implements FetchDecorator {
         if (this.logHeaders && request.headers) {
             if (request.headers.forEach && typeof request.headers.forEach === "function") {
                 // Header object implementation
-                request.headers.forEach((value, key) => this.logAction(this.getHeaderLogString(String(key), value), "Header"));
+                request.headers.forEach((value, key) =>
+                    this.logAction(this.getHeaderLogString(String(key), value), "Header"),
+                );
             } else if (Array.isArray(request.headers)) {
                 // [string, string] implementation
                 for (const header of request.headers) {
@@ -19,15 +20,23 @@ export abstract class FetchLogger implements FetchDecorator {
                 }
             } else {
                 for (const header in request.headers) {
-                    this.logAction(this.getHeaderLogString(header, (request.headers as any)[header]), "Header");
+                    this.logAction(
+                        this.getHeaderLogString(
+                            header,
+                            (
+                                request.headers as {
+                                    [key: string]: string;
+                                }
+                            )[header],
+                        ),
+                        "Header",
+                    );
                 }
             }
-            
         }
         if (this.logBody && request.body) {
             this.logAction(this.getBodyLogString(request.body), "Body");
         }
-
     }
     decorateResponse(url: string, request: RequestInitToolkit, response: Response) {
         this.logAction(this.getResponseLogString(request, response), "Response");
@@ -68,8 +77,8 @@ export abstract class FetchLogger implements FetchDecorator {
 }
 
 export class FetchConsoleLogger extends FetchLogger {
-    constructor (logBody = false, logHeaders = false) {
-        super(logBody, logHeaders)
+    constructor(logBody = false, logHeaders = false) {
+        super(logBody, logHeaders);
     }
 
     protected logAction(logStr: string): void {

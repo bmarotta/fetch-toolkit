@@ -1,6 +1,6 @@
 import { generateUidBasedOnTimestamp } from "./util";
 
-export class ParallelPromiseError extends Error {}
+export class PromiseConcurrentQueueError extends Error {}
 
 interface FunctionReference<T> {
     id: string;
@@ -21,7 +21,7 @@ type OnEventCallback = (
     message?: string,
 ) => void;
 
-export class ParallelPromiseHandler<T> {
+export class PromiseConcurrentQueue<T> {
     private waitingQueue: FunctionReference<T>[] = [];
     private executing: FunctionReference<T>[] = [];
 
@@ -29,10 +29,10 @@ export class ParallelPromiseHandler<T> {
 
     push(func: () => Promise<T>, uid?: string, data?: unknown): Promise<T> {
         if (uid && this.waitingQueue.find(n => n.id == uid)) {
-            throw new ParallelPromiseError(`Promise with uid ${uid} already in the queue`);
+            throw new PromiseConcurrentQueueError(`Promise with uid ${uid} already in the queue`);
         }
         if (uid && this.executing.find(n => n.id == uid)) {
-            throw new ParallelPromiseError(`Fetch with uid ${uid} already executing`);
+            throw new PromiseConcurrentQueueError(`Fetch with uid ${uid} already executing`);
         }
         const functionRef = {
             id: uid ?? generateUidBasedOnTimestamp(),
