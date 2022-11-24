@@ -13,7 +13,7 @@ export abstract class AuthenticationProvider implements FetchDecorator {
 }
 
 export class BasicAuthenticationProvider extends AuthenticationProvider {
-    constructor(private username: string, private password: string) {
+    constructor(public username: string, public password: string) {
         super();
     }
     protected getHeaderValue(): string {
@@ -25,10 +25,10 @@ export class BasicAuthenticationProvider extends AuthenticationProvider {
 }
 
 export class BearerAuthenticationProvider extends AuthenticationProvider {
-    constructor(private token: string) {
+    constructor(public token: string, public prefix = "Bearer") {
         super();
     }
     protected getHeaderValue(): string {
-        return `Bearer ${this.token}`;
+        return `${this.prefix} ${this.token}`;
     }
 }
