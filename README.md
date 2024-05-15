@@ -36,7 +36,7 @@ function myCall: Promise<Myresult> {
 
 ## Implementing an API
 
-To implement an API, create a new class that extends the `API` class. Create a function for each API method
+To implement an API, create a new class that extends the `API` class. Create a function for each API method. You query and post parameters are automatically serialized to the URL or to the post body respectively. If using typescript, you can use strong-types for the request and response objects.
 
 ```typescript
 import { API } from "fetch-toolkit";
@@ -46,14 +46,23 @@ export type Item {
   name: string;
 }
 
+export type PaginationParams {
+  "max-items": number | undefined;
+  "start-index": number | undefined;
+}
+
 export class MyApi extends API {
 
+  getAllItems(pagination: PaginationParams): Promise<Item> {
+    return this.get<Item>(`/api/latest/items`, pagination);
+  }
+
   getItem(id: string): Promise<Item> {
-    return this.get<Item>(`/api/latest/item/${id}`);
+    return this.get<Item>(`/api/latest/items/${id}`);
   }
 
   updateItem(id: string, item: Item): Promise<void> {
-    return this.post<void>(`/api/latest/item/${id}`, item);
+    return this.post<void>(`/api/latest/items/${id}`, item);
   }
 }
 ```
@@ -70,6 +79,8 @@ export class MyApi extends API {
   constructor(baseUrl: string, username: string, password: string) {
     super(baseUrl, new BasicAuthenticationProvider(username, password));
   }
+
+  ...
 }
 ```
 
@@ -96,6 +107,7 @@ export class MyApi extends API {
 
 For debug purposes, you can log all the API calls. Currently only the `FetchConsoleLogger` is available, but you can implement your own logger by extending the `FetchLogger` class.
 
+```typescript
 import { API, BearerAuthenticationProvider, FetchConsoleLogger } from "fetch-toolkit";
 
 export class MyApi extends API {
@@ -105,3 +117,4 @@ export class MyApi extends API {
 
     ...
 }
+```
