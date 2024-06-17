@@ -28,9 +28,8 @@ jobs:
         cache: 'npm'
     - run: npm ci
     - run: npm run build --if-present
-    - run: npm coverage
-    - run: npm i coverage-badges-cli -g
-    - run: coverage-badges --output badges/badges.svg
+    - run: npm run coverage
+    - run: npx coverage-badges --output badges/badges.svg
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v3

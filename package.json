@@ -35,6 +35,7 @@
     "@typescript-eslint/eslint-plugin": "^5.40.1",
     "@typescript-eslint/parser": "^5.40.1",
     "concat-md": "^0.4.0",
+    "coverage-badges-cli": "^2.0.0",
     "eslint": "^8.25.0",
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^8.5.0",
