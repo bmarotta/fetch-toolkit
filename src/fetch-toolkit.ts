@@ -11,10 +11,9 @@ import { generateUidBasedOnTimestamp } from "./util";
 export async function fetchJson<T>(url: string, init?: RequestInitToolkit): Promise<T> {
     // Set the Accept header to application/json
     // Using exports to be able to mock the function in the tests
-    init = exports.fetchSetHeader(init, HTTP_HEADER_ACCEPT, HTTP_HEADER_ACCEPT_JSON);
+    init = fetchSetHeader(init, HTTP_HEADER_ACCEPT, HTTP_HEADER_ACCEPT_JSON);
 
     // Call the fetchToolkit method to get the response
-    // Using exports to be able to mock the function in the tests
     const response = await fetchToolkit(url, init);
     if (response.status == 204) {
         return undefined as T;

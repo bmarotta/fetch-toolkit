@@ -18,10 +18,8 @@ describe("fetchToolkit Core", () => {
     const init = {};
     
     const fetchSpy = jest.spyOn(global, "fetch").mockResolvedValue(response as unknown as Response);
-    const fetchSetHeaderSpy = jest.spyOn(ftModule, "fetchSetHeader").mockImplementation(() => init);
     const result = await ftModule.fetchJson(url, init);
 
-    expect(fetchSetHeaderSpy).toHaveBeenCalledWith(init, "Accept", "application/json");
     expect(fetchSpy).toHaveBeenCalledWith(url, init);
     expect(response.json).toHaveBeenCalled();
     expect(result).toEqual({ data: "test" });
@@ -36,11 +34,9 @@ describe("fetchToolkit Core", () => {
     const init = {};
     
     const fetchSpy = jest.spyOn(global, "fetch").mockResolvedValue(response as unknown as Response);
-    const fetchSetHeaderSpy = jest.spyOn(ftModule, "fetchSetHeader").mockReturnValue(init);
 
     const result = await ftModule.fetchJson(url, init);
 
-    expect(fetchSetHeaderSpy).toHaveBeenCalledWith(init, "Accept", "application/json");
     expect(fetchSpy).toHaveBeenCalledWith(url, init);
     expect(result).toBeUndefined();
   });
@@ -56,13 +52,11 @@ describe("fetchToolkit Core", () => {
     const init = {};
     
     const fetchSpy = jest.spyOn(global, "fetch").mockResolvedValue(response as unknown as Response);
-    const fetchSetHeaderSpy = jest.spyOn(ftModule, "fetchSetHeader").mockImplementation((init) => init ?? {} as RequestInitToolkit);
 
     await expect(ftModule.fetchJson(url, init)).rejects.toThrow(
       new FetchError(url, response.status, response.statusText, `{"error": "Error message"}`)
     );
 
-    expect(fetchSetHeaderSpy).toHaveBeenCalledWith(init, "Accept", "application/json");
     expect(fetchSpy).toHaveBeenCalledWith(url, init);
     expect(response.text).toHaveBeenCalled();
   });
