@@ -38,7 +38,7 @@ export abstract class FetchLogger implements FetchDecorator {
             this.logAction(this.getBodyLogString(request.body), "Body");
         }
     }
-    decorateResponse(url: string, request: RequestInitToolkit, response: Response) {
+    decorateResponse(_url: string, request: RequestInitToolkit, response: Response) {
         this.logAction(this.getResponseLogString(request, response), "Response");
     }
 

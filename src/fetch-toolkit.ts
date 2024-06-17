@@ -35,13 +35,13 @@ export async function fetchToolkit(url: string, init?: RequestInitToolkit) {
         response = await init.handler.fetch(url, init);
     } else {
         // Call any available request decorator
-        fetchDecorateRequest(init, url);
+        await fetchDecorateRequest(init, url);
 
         // Call fetch
         response = await (init?.handler?.fetch ? init.handler.fetch(url, init) : fetch(url, init));
 
         // Call any available response decorator
-        fetchDecorateResponse(init, url, response);
+        await fetchDecorateResponse(init, url, response);
     }
 
     // Check the response result
@@ -61,7 +61,7 @@ export async function fetchToolkit(url: string, init?: RequestInitToolkit) {
 /** 
  * Decorate the response with the decorators in the init object
 */
-function fetchDecorateResponse(
+async function fetchDecorateResponse(
     init: RequestInitToolkit | undefined,
     url: string,
     response: Response,
@@ -69,7 +69,7 @@ function fetchDecorateResponse(
     if (init?.decorators) {
         for (const decorator of init.decorators) {
             if (decorator.decorateResponse && decorator.decorateResponse instanceof Function) {
-                decorator.decorateResponse(url, init, response);
+                await decorator.decorateResponse(url, init, response);
             }
         }
     }
@@ -78,11 +78,11 @@ function fetchDecorateResponse(
 /**
  * Decorate the request with the decorators in the init object
  */
-function fetchDecorateRequest(init: RequestInitToolkit | undefined, url: string) {
+async function fetchDecorateRequest(init: RequestInitToolkit | undefined, url: string) {
     if (init?.decorators) {
         for (const decorator of init.decorators) {
             if (decorator.decorateRequest && decorator.decorateRequest instanceof Function) {
-                decorator.decorateRequest(url, init);
+                await decorator.decorateRequest(url, init);
             }
         }
     }

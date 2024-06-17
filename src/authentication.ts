@@ -9,11 +9,11 @@ export abstract class AuthenticationProvider implements FetchDecorator {
 
     /**
      * Decorate the request with the Authorization header.
-     * @param url URL to decorate
+     * @param url URL to decorate. Irrelevant for this implementation
      * @param init Fetch options
      */
-    public decorateRequest(url: string, init: RequestInit) {
-        const headerValue = this.getHeaderValue();
+    public async decorateRequest(_url: string, init: RequestInit) {
+        const headerValue = await this.getHeaderValue();
         if (headerValue) {
             fetchSetHeader(init, HTTP_HEADER_AUTHORIZATION, headerValue);
         }
@@ -22,7 +22,7 @@ export abstract class AuthenticationProvider implements FetchDecorator {
     /**
      * Get the value of the Authorization header.
      */
-    protected abstract getHeaderValue(): string;
+    protected abstract getHeaderValue(): string | Promise<string>;
 }
 
 /**
@@ -75,8 +75,8 @@ export class BearerAuthenticationProvider extends AuthenticationProvider {
      * Exceptions are not handled here. If the token is a function and it throws an exception, it will be propagated.
      * @returns Value of the Authorization header
      */
-    protected getHeaderValue(): string {
-        const token = typeof this.token === "function" ? this.token() : this.token;
+    protected async getHeaderValue(): Promise<string> {
+        const token = typeof this.token === "function" ? await this.token() : this.token;
         return `${this.prefix} ${token}`;
     }
 }

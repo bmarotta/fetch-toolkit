@@ -18,8 +18,8 @@ export class FetchError extends Error {
  * Base interface for the decorating a fetch request and response
  */
 export interface FetchDecorator {
-    decorateRequest?: (url: string, request: RequestInitToolkit) => void;
-    decorateResponse?: (url: string, request: RequestInitToolkit, response: Response) => void;
+    decorateRequest?: (url: string, request: RequestInitToolkit) => void | Promise<void>;
+    decorateResponse?: (url: string, request: RequestInitToolkit, response: Response) => void | Promise<void>;
 }
 
 /**
