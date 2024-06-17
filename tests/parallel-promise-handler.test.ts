@@ -4,12 +4,11 @@ import {
     PromiseConcurrentQueueError,
 } from "../src/parallel-promise-handler";
 
-Object.defineProperty(global, 'performance', {
+Object.defineProperty(global, "performance", {
     writable: true,
-  });
+});
 
 describe("PromiseConcurrentQueue", () => {
-
     beforeEach(() => {
         jest.useFakeTimers();
     });
