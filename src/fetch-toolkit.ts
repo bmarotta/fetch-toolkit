@@ -9,8 +9,12 @@ import { generateUidBasedOnTimestamp } from "./util";
  * @returns A JSON object
  */
 export async function fetchJson<T>(url: string, init?: RequestInitToolkit): Promise<T> {
-    init = fetchSetHeader(init, HTTP_HEADER_ACCEPT, HTTP_HEADER_ACCEPT_JSON);
+    // Set the Accept header to application/json
+    // Using exports to be able to mock the function in the tests
+    init = exports.fetchSetHeader(init, HTTP_HEADER_ACCEPT, HTTP_HEADER_ACCEPT_JSON);
 
+    // Call the fetchToolkit method to get the response
+    // Using exports to be able to mock the function in the tests
     const response = await fetchToolkit(url, init);
     if (response.status == 204) {
         return undefined as T;
@@ -68,7 +72,7 @@ async function fetchDecorateResponse(
 ) {
     if (init?.decorators) {
         for (const decorator of init.decorators) {
-            if (decorator.decorateResponse && decorator.decorateResponse instanceof Function) {
+            if (decorator.decorateResponse && typeof decorator.decorateResponse === "function") {
                 await decorator.decorateResponse(url, init, response);
             }
         }
@@ -81,7 +85,7 @@ async function fetchDecorateResponse(
 async function fetchDecorateRequest(init: RequestInitToolkit | undefined, url: string) {
     if (init?.decorators) {
         for (const decorator of init.decorators) {
-            if (decorator.decorateRequest && decorator.decorateRequest instanceof Function) {
+            if (decorator.decorateRequest && typeof decorator.decorateRequest === "function") {
                 await decorator.decorateRequest(url, init);
             }
         }
