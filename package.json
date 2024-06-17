@@ -11,7 +11,9 @@
     "watch": "rollup -c -w",
     "lint": "npx eslint src/**/* --fix",
     "lint-build": "npx eslint src/** --no-error-on-unmatched-pattern",
-    "doc": "npx typedoc --plugin typedoc-plugin-markdown --out temp-docs src/index.ts & rimraf temp-docs/README.md & concat-md --toc --decrease-title-levels --dir-name-as-title temp-docs > component.md & rimraf temp-docs"
+    "doc": "npx typedoc --plugin typedoc-plugin-markdown --out temp-docs src/index.ts & rimraf temp-docs/README.md & concat-md --toc --decrease-title-levels --dir-name-as-title temp-docs > component.md & rimraf temp-docs",
+    "coverage": "jest --coverage",
+    "make-badges": "coverage-badges"
   },
   "repository": {
     "type": "git",
@@ -33,6 +35,7 @@
     "@typescript-eslint/eslint-plugin": "^5.40.1",
     "@typescript-eslint/parser": "^5.40.1",
     "concat-md": "^0.4.0",
+    "coverage-badges-cli": "^2.0.0",
     "eslint": "^8.25.0",
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^8.5.0",
@@ -49,5 +52,15 @@
     "typedoc": "^0.23.6",
     "typedoc-plugin-markdown": "^3.13.3",
     "typescript": "^4.8.4"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "<rootDir>/packages/**/*.{tsx,ts}",
+      "!**/*.{js,d.ts}"
+    ],
+    "coverageReporters": [
+      "lcov",
+      "json-summary"
+    ]
   }
 }
