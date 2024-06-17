@@ -64,7 +64,7 @@ export class BearerAuthenticationProvider extends AuthenticationProvider {
      * @param token Token or function that returns a token
      * @param prefix Prefix for the authorization header. Default is "Bearer"
      */
-    constructor(public token: string | (() => string), public prefix = "Bearer") {
+    constructor(public token: string | (() => string | Promise<string>), public prefix = "Bearer") {
         super();
     }
 
