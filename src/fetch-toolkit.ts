@@ -19,6 +19,14 @@ export async function fetchJson<T>(url: string, init?: RequestInitToolkit): Prom
     return obj;
 }
 
+/**
+ * Helper method to get a response as text. 
+ * In case of a 204 status code, it returns an empty string
+ * Throws a FetchError in case of faulty Status code, trying to get the response text
+ * @param url URL to retrieve
+ * @param init Init parameters (same as used in the native fetch command)
+ * @returns A string
+ */
 export async function fetchToolkit(url: string, init?: RequestInitToolkit) {
     let response: Response;
 
@@ -50,6 +58,9 @@ export async function fetchToolkit(url: string, init?: RequestInitToolkit) {
     return response;
 }
 
+/** 
+ * Decorate the response with the decorators in the init object
+*/
 function fetchDecorateResponse(
     init: RequestInitToolkit | undefined,
     url: string,
@@ -64,6 +75,9 @@ function fetchDecorateResponse(
     }
 }
 
+/**
+ * Decorate the request with the decorators in the init object
+ */
 function fetchDecorateRequest(init: RequestInitToolkit | undefined, url: string) {
     if (init?.decorators) {
         for (const decorator of init.decorators) {
@@ -74,6 +88,18 @@ function fetchDecorateRequest(init: RequestInitToolkit | undefined, url: string)
     }
 }
 
+/**
+ * Helper method to set a header in the fetch request.
+ * It checks if the header has the has and set methods and uses them if available.
+ * If the header does not have the has and set methods, it uses the header as a dictionary.
+ * If the header already exists, it overwrites the value if the overwrite parameter is true.
+ * If the header does not exist, it creates it.
+ * @param init Request options
+ * @param headerName Header name
+ * @param headerValue Header value
+ * @param overwrite If true, it overwrites the header value if it already exists
+ * @returns The updated init object
+ */
 export function fetchSetHeader(
     init: RequestInitToolkit | undefined,
     headerName: string,
@@ -98,6 +124,11 @@ export function fetchSetHeader(
     return init;
 }
 
+/**
+ * Helper method to ensure that the init object has an unique identifier (uid).
+ * If the uid is not present, it generates a new one.
+ * @param init Request options
+ */
 export function fetchEnsureUid(init: RequestInitToolkit) {
     if (!init.uid) {
         init.uid = generateUidBasedOnTimestamp();
