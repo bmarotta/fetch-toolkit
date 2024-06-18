@@ -48,9 +48,9 @@ describe("FetchGroupHandler", () => {
         const url = "http://example.com";
         const init = {} as RequestInit;
         const response = new Response();
-        const fetchMock = jest
+        jest
             .spyOn(global, "fetch")
-            .mockResolvedValue(response as unknown as Response);
+            .mockResolvedValue(response);
         const fetchGroupHandler = new FetchGroupHandler(5);
 
         const result = fetchGroupHandler.fetch(url, init);
@@ -62,6 +62,10 @@ describe("FetchGroupHandler", () => {
         const url = "http://example.com";
         const init = {} as RequestInit;
         const fetchGroupHandler = new FetchGroupHandler(5);
+        const response = new Response();
+        jest
+            .spyOn(global, "fetch")
+            .mockResolvedValue(response);
 
         jest.spyOn(PromiseConcurrentQueue.prototype, "push");
 
@@ -69,4 +73,30 @@ describe("FetchGroupHandler", () => {
 
         expect(PromiseConcurrentQueue.prototype.push).toHaveBeenCalled();
     });
+
+    it ("should add to the queue if the maxParallel limit is reached", async () => {
+        const url = "http://example.com?param=";
+        const fetchGroupHandler = new FetchGroupHandler(1);
+        const response = new Response();
+        jest
+            .spyOn(global, "fetch")
+            .mockResolvedValue(response);
+
+        jest.spyOn(PromiseConcurrentQueue.prototype, "push");
+
+        const promises = Promise.all([
+            fetchGroupHandler.fetch(url + "1", {} as RequestInit),
+            fetchGroupHandler.fetch(url + "2", {} as RequestInit),
+            fetchGroupHandler.fetch(url + "3", {} as RequestInit),
+            fetchGroupHandler.fetch(url + "4", {} as RequestInit),
+        ]);
+
+        expect(PromiseConcurrentQueue.prototype.push).toHaveBeenCalledTimes(4);
+        expect(fetchGroupHandler.waitingQueueLength).toBe(3);
+        expect(fetchGroupHandler.numberOfExecuting).toBe(1);
+        await promises;
+        expect(fetchGroupHandler.numberOfExecuting).toBe(0);
+        expect(fetchGroupHandler.waitingQueueLength).toBe(0);
+    });
+
 });

@@ -209,4 +209,18 @@ export class PromiseConcurrentQueue<T> {
             this.waitingQueue.push(functionRef);
         });
     }
+
+    /**
+     * Returns the length of the waiting queue
+     */
+    public get waitingQueueLength(): number {
+        return this.waitingQueue.length;
+    }
+
+    /**
+     * Returns the number of the executing promises
+     */
+    public get numberOfExecuting(): number {
+        return this.executing.length;
+    }
 }

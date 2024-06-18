@@ -67,4 +67,18 @@ export class FetchGroupHandler extends FetchHandler {
             init,
         ); // We pass the init as data, as it need it for the logger
     }
+
+    /**
+     * Returns the length of the waiting queue
+     */
+    public get waitingQueueLength(): number {
+        return this.parallelPromiseHandler.waitingQueueLength;
+    }
+
+    /**
+     * Returns the number of the executing fetch requests
+     */
+    public get numberOfExecuting(): number {
+        return this.parallelPromiseHandler.numberOfExecuting;
+    }
 }

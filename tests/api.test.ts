@@ -1,4 +1,4 @@
-import { FetchDecorator } from "../src";
+import { FetchConsoleLogger, FetchDecorator, RequestInitToolkit, fetchSetHeader } from "../src";
 import { API } from "../src/api";
 import { BasicAuthenticationProvider, BearerAuthenticationProvider } from "../src/authentication";
 
@@ -115,6 +115,27 @@ describe("API", () => {
             expect(url).toBe("http://example.com/users?email=john.doe%40example.com");
             expect(reqMethod).toBe("DELETE");
         });
+
+        it("can use the auxiliary decorators to modify the request and response", async () => {
+            // Arrange
+            class CustomHeaderDecorator implements FetchDecorator {
+                constructor(private header: string, private value: string) {}
+
+                decorateRequest(_url: string, request: RequestInitToolkit) {  
+                    fetchSetHeader(request, this.header, this.value);            
+                }
+            }
+
+            // Act
+            const customHeaderDecorator = new CustomHeaderDecorator("X-Custom-Header", "test");
+            api = new API(baseUrl, authentication, 2, new FetchConsoleLogger(), [customHeaderDecorator]);
+
+            // Assert
+            expect(api.customDecorators).toHaveLength(1);
+            expect(api.customDecorators?.[0]).toBe(customHeaderDecorator);
+            expect(api.groupHandler?.maxParallel).toBe(2);
+            expect(api.logger).toBeInstanceOf(FetchConsoleLogger);
+        });
     });
 
     describe("authentication", () => {
@@ -128,4 +149,4 @@ describe("API", () => {
 
         // Add more test cases for other authentication providers
     });
-});
+})
