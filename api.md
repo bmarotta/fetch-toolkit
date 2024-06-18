@@ -92,7 +92,7 @@ Optional custom decorators for the API (see [FetchDecorator](#fetch-toolkit-api-
 
 ###### Source
 
-[src/api.ts:37](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/api.ts#L37)
+[src/api.ts:37](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/api.ts#L37)
 
 #### Properties
 
@@ -104,7 +104,7 @@ Optional authentication provider for the API (see [AuthenticationProvider](#fetc
 
 ###### Source
 
-[src/api.ts:39](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/api.ts#L39)
+[src/api.ts:39](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/api.ts#L39)
 
 ***
 
@@ -116,7 +116,7 @@ The base URL of the API.
 
 ###### Source
 
-[src/api.ts:38](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/api.ts#L38)
+[src/api.ts:38](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/api.ts#L38)
 
 ***
 
@@ -128,7 +128,7 @@ Optional custom decorators for the API (see [FetchDecorator](#fetch-toolkit-api-
 
 ###### Source
 
-[src/api.ts:42](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/api.ts#L42)
+[src/api.ts:42](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/api.ts#L42)
 
 ***
 
@@ -140,7 +140,7 @@ The handler for managing parallel requests (optional). See [FetchGroupHandler](#
 
 ###### Source
 
-[src/api.ts:27](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/api.ts#L27)
+[src/api.ts:27](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/api.ts#L27)
 
 ***
 
@@ -152,7 +152,7 @@ Optional logger for the API (see [FetchLogger](#fetch-toolkit-api-referenceclass
 
 ###### Source
 
-[src/api.ts:41](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/api.ts#L41)
+[src/api.ts:41](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/api.ts#L41)
 
 #### Methods
 
@@ -193,7 +193,7 @@ A promise that resolves to the defined return.
 
 ###### Source
 
-[src/api.ts:58](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/api.ts#L58)
+[src/api.ts:58](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/api.ts#L58)
 
 ***
 
@@ -230,7 +230,7 @@ A promise that resolves to the response data.
 
 ###### Source
 
-[src/api.ts:110](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/api.ts#L110)
+[src/api.ts:110](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/api.ts#L110)
 
 ***
 
@@ -263,7 +263,7 @@ A promise that resolves to the response data.
 
 ###### Source
 
-[src/api.ts:98](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/api.ts#L98)
+[src/api.ts:98](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/api.ts#L98)
 
 ***
 
@@ -300,7 +300,7 @@ A promise that resolves to the response data.
 
 ###### Source
 
-[src/api.ts:122](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/api.ts#L122)
+[src/api.ts:122](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/api.ts#L122)
 
 ***
 
@@ -337,7 +337,7 @@ A promise that resolves to the response data.
 
 ###### Source
 
-[src/api.ts:134](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/api.ts#L134)
+[src/api.ts:134](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/api.ts#L134)
 
 ***
 
@@ -374,7 +374,7 @@ A promise that resolves to the response data.
 
 ###### Source
 
-[src/api.ts:146](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/api.ts#L146)
+[src/api.ts:146](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/api.ts#L146)
 
 
 <a name="fetch-toolkit-api-referenceclassesauthenticationprovidermd"></a>
@@ -436,7 +436,7 @@ Fetch options
 
 ###### Source
 
-[src/authentication.ts:15](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/authentication.ts#L15)
+[src/authentication.ts:15](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/authentication.ts#L15)
 
 ***
 
@@ -452,7 +452,7 @@ Get the value of the Authorization header.
 
 ###### Source
 
-[src/authentication.ts:25](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/authentication.ts#L25)
+[src/authentication.ts:25](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/authentication.ts#L25)
 
 
 <a name="fetch-toolkit-api-referenceclassesbasicauthenticationprovidermd"></a>
@@ -501,7 +501,7 @@ Password
 
 ###### Source
 
-[src/authentication.ts:40](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/authentication.ts#L40)
+[src/authentication.ts:40](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/authentication.ts#L40)
 
 #### Properties
 
@@ -513,7 +513,7 @@ Password
 
 ###### Source
 
-[src/authentication.ts:40](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/authentication.ts#L40)
+[src/authentication.ts:40](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/authentication.ts#L40)
 
 ***
 
@@ -525,7 +525,7 @@ Username
 
 ###### Source
 
-[src/authentication.ts:40](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/authentication.ts#L40)
+[src/authentication.ts:40](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/authentication.ts#L40)
 
 #### Methods
 
@@ -555,7 +555,7 @@ Fetch options
 
 ###### Source
 
-[src/authentication.ts:15](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/authentication.ts#L15)
+[src/authentication.ts:15](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/authentication.ts#L15)
 
 ***
 
@@ -575,7 +575,7 @@ Get the value of the Authorization header.
 
 ###### Source
 
-[src/authentication.ts:47](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/authentication.ts#L47)
+[src/authentication.ts:47](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/authentication.ts#L47)
 
 
 <a name="fetch-toolkit-api-referenceclassesbearerauthenticationprovidermd"></a>
@@ -624,7 +624,7 @@ Prefix for the authorization header. Default is "Bearer"
 
 ###### Source
 
-[src/authentication.ts:67](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/authentication.ts#L67)
+[src/authentication.ts:67](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/authentication.ts#L67)
 
 #### Properties
 
@@ -636,7 +636,7 @@ Prefix for the authorization header. Default is "Bearer"
 
 ###### Source
 
-[src/authentication.ts:67](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/authentication.ts#L67)
+[src/authentication.ts:67](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/authentication.ts#L67)
 
 ***
 
@@ -648,7 +648,7 @@ Token or function that returns a token
 
 ###### Source
 
-[src/authentication.ts:67](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/authentication.ts#L67)
+[src/authentication.ts:67](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/authentication.ts#L67)
 
 #### Methods
 
@@ -678,7 +678,7 @@ Fetch options
 
 ###### Source
 
-[src/authentication.ts:15](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/authentication.ts#L15)
+[src/authentication.ts:15](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/authentication.ts#L15)
 
 ***
 
@@ -703,7 +703,7 @@ Value of the Authorization header
 
 ###### Source
 
-[src/authentication.ts:78](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/authentication.ts#L78)
+[src/authentication.ts:78](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/authentication.ts#L78)
 
 
 <a name="fetch-toolkit-api-referenceclassesfetchconsoleloggermd"></a>
@@ -746,7 +746,7 @@ A logger that logs to the console.
 
 ###### Source
 
-[src/logging.ts:131](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/logging.ts#L131)
+[src/logging.ts:131](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/logging.ts#L131)
 
 #### Properties
 
@@ -762,7 +762,7 @@ Log the body of the request.
 
 ###### Source
 
-[src/logging.ts:14](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/logging.ts#L14)
+[src/logging.ts:14](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/logging.ts#L14)
 
 ***
 
@@ -778,7 +778,7 @@ Log the headers of the request.
 
 ###### Source
 
-[src/logging.ts:14](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/logging.ts#L14)
+[src/logging.ts:14](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/logging.ts#L14)
 
 #### Methods
 
@@ -810,7 +810,7 @@ void
 
 ###### Source
 
-[src/logging.ts:23](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/logging.ts#L23)
+[src/logging.ts:23](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/logging.ts#L23)
 
 ***
 
@@ -846,7 +846,7 @@ void
 
 ###### Source
 
-[src/logging.ts:75](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/logging.ts#L75)
+[src/logging.ts:75](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/logging.ts#L75)
 
 ***
 
@@ -872,7 +872,7 @@ The string to log.
 
 ###### Source
 
-[src/logging.ts:139](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/logging.ts#L139)
+[src/logging.ts:139](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/logging.ts#L139)
 
 ***
 
@@ -902,7 +902,7 @@ Fetch options.
 
 ###### Source
 
-[src/logging.ts:101](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/logging.ts#L101)
+[src/logging.ts:101](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/logging.ts#L101)
 
 
 <a name="fetch-toolkit-api-referenceclassesfetcherrormd"></a>
@@ -947,7 +947,7 @@ Error thrown on a faulty fetch request
 
 ###### Source
 
-[src/types.ts:7](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/types.ts#L7)
+[src/types.ts:7](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/types.ts#L7)
 
 #### Properties
 
@@ -985,7 +985,7 @@ node\_modules/typescript/lib/lib.es5.d.ts:1053
 
 ###### Source
 
-[src/types.ts:11](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/types.ts#L11)
+[src/types.ts:11](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/types.ts#L11)
 
 ***
 
@@ -1009,7 +1009,7 @@ node\_modules/typescript/lib/lib.es5.d.ts:1055
 
 ###### Source
 
-[src/types.ts:9](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/types.ts#L9)
+[src/types.ts:9](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/types.ts#L9)
 
 ***
 
@@ -1019,7 +1019,7 @@ node\_modules/typescript/lib/lib.es5.d.ts:1055
 
 ###### Source
 
-[src/types.ts:10](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/types.ts#L10)
+[src/types.ts:10](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/types.ts#L10)
 
 ***
 
@@ -1029,7 +1029,7 @@ node\_modules/typescript/lib/lib.es5.d.ts:1055
 
 ###### Source
 
-[src/types.ts:8](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/types.ts#L8)
+[src/types.ts:8](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/types.ts#L8)
 
 ***
 
@@ -1142,7 +1142,7 @@ The maximum number of parallel requests to handle.
 
 ###### Source
 
-[src/group.ts:21](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/group.ts#L21)
+[src/group.ts:21](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/group.ts#L21)
 
 #### Properties
 
@@ -1154,7 +1154,39 @@ The maximum number of parallel requests to handle.
 
 ###### Source
 
-[src/group.ts:21](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/group.ts#L21)
+[src/group.ts:21](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/group.ts#L21)
+
+#### Accessors
+
+##### numberOfExecuting
+
+> `get` **numberOfExecuting**(): `number`
+
+Returns the number of the executing fetch requests
+
+###### Returns
+
+`number`
+
+###### Source
+
+[src/group.ts:81](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/group.ts#L81)
+
+***
+
+##### waitingQueueLength
+
+> `get` **waitingQueueLength**(): `number`
+
+Returns the length of the waiting queue
+
+###### Returns
+
+`number`
+
+###### Source
+
+[src/group.ts:74](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/group.ts#L74)
 
 #### Methods
 
@@ -1186,7 +1218,7 @@ A Promise that resolves to the Response object representing the fetched resource
 
 ###### Source
 
-[src/group.ts:50](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/group.ts#L50)
+[src/group.ts:50](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/group.ts#L50)
 
 
 <a name="fetch-toolkit-api-referenceclassesfetchgrouphandlererrormd"></a>
@@ -1384,7 +1416,7 @@ A class that handles the call to the fetch api itself. Use it if just implementi
 
 ###### Source
 
-[src/types.ts:29](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/types.ts#L29)
+[src/types.ts:29](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/types.ts#L29)
 
 
 <a name="fetch-toolkit-api-referenceclassesfetchloggermd"></a>
@@ -1431,7 +1463,7 @@ Log the headers of the request.
 
 ###### Source
 
-[src/logging.ts:14](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/logging.ts#L14)
+[src/logging.ts:14](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/logging.ts#L14)
 
 #### Properties
 
@@ -1443,7 +1475,7 @@ Log the body of the request.
 
 ###### Source
 
-[src/logging.ts:14](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/logging.ts#L14)
+[src/logging.ts:14](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/logging.ts#L14)
 
 ***
 
@@ -1455,7 +1487,7 @@ Log the headers of the request.
 
 ###### Source
 
-[src/logging.ts:14](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/logging.ts#L14)
+[src/logging.ts:14](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/logging.ts#L14)
 
 #### Methods
 
@@ -1487,7 +1519,7 @@ void
 
 ###### Source
 
-[src/logging.ts:23](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/logging.ts#L23)
+[src/logging.ts:23](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/logging.ts#L23)
 
 ***
 
@@ -1523,7 +1555,7 @@ void
 
 ###### Source
 
-[src/logging.ts:75](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/logging.ts#L75)
+[src/logging.ts:75](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/logging.ts#L75)
 
 ***
 
@@ -1549,7 +1581,7 @@ The type of action to log.
 
 ###### Source
 
-[src/logging.ts:118](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/logging.ts#L118)
+[src/logging.ts:118](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/logging.ts#L118)
 
 ***
 
@@ -1575,7 +1607,7 @@ Fetch options.
 
 ###### Source
 
-[src/logging.ts:101](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/logging.ts#L101)
+[src/logging.ts:101](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/logging.ts#L101)
 
 
 <a name="fetch-toolkit-api-referenceclassespromiseconcurrentqueuemd"></a>
@@ -1618,7 +1650,7 @@ Optional callback to be triggered when an event occurs
 
 ###### Source
 
-[src/parallel-promise-handler.ts:67](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/parallel-promise-handler.ts#L67)
+[src/parallel-promise-handler.ts:67](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/parallel-promise-handler.ts#L67)
 
 #### Properties
 
@@ -1630,7 +1662,7 @@ The maximum number of parallel promises that can be executed. If not set, no lim
 
 ###### Source
 
-[src/parallel-promise-handler.ts:67](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/parallel-promise-handler.ts#L67)
+[src/parallel-promise-handler.ts:67](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/parallel-promise-handler.ts#L67)
 
 ***
 
@@ -1642,7 +1674,39 @@ Optional callback to be triggered when an event occurs
 
 ###### Source
 
-[src/parallel-promise-handler.ts:67](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/parallel-promise-handler.ts#L67)
+[src/parallel-promise-handler.ts:67](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/parallel-promise-handler.ts#L67)
+
+#### Accessors
+
+##### numberOfExecuting
+
+> `get` **numberOfExecuting**(): `number`
+
+Returns the number of the executing promises
+
+###### Returns
+
+`number`
+
+###### Source
+
+[src/parallel-promise-handler.ts:223](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/parallel-promise-handler.ts#L223)
+
+***
+
+##### waitingQueueLength
+
+> `get` **waitingQueueLength**(): `number`
+
+Returns the length of the waiting queue
+
+###### Returns
+
+`number`
+
+###### Source
+
+[src/parallel-promise-handler.ts:216](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/parallel-promise-handler.ts#L216)
 
 #### Methods
 
@@ -1674,7 +1738,7 @@ Returns a promise that resolves to the result of the function
 
 ###### Source
 
-[src/parallel-promise-handler.ts:76](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/parallel-promise-handler.ts#L76)
+[src/parallel-promise-handler.ts:76](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/parallel-promise-handler.ts#L76)
 
 ## Functions
 
@@ -1715,7 +1779,7 @@ A JSON object
 
 #### Source
 
-[src/fetch-toolkit.ts:11](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/fetch-toolkit.ts#L11)
+[src/fetch-toolkit.ts:11](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/fetch-toolkit.ts#L11)
 
 
 <a name="fetch-toolkit-api-referencefunctionsfetchsetheadermd"></a>
@@ -1762,7 +1826,7 @@ The updated init object
 
 #### Source
 
-[src/fetch-toolkit.ts:106](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/fetch-toolkit.ts#L106)
+[src/fetch-toolkit.ts:106](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/fetch-toolkit.ts#L106)
 
 
 <a name="fetch-toolkit-api-referenceglobalsmd"></a>
@@ -1843,7 +1907,7 @@ Base interface for the decorating a fetch request and response
 
 ###### Source
 
-[src/types.ts:21](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/types.ts#L21)
+[src/types.ts:21](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/types.ts#L21)
 
 ***
 
@@ -1865,7 +1929,7 @@ Base interface for the decorating a fetch request and response
 
 ###### Source
 
-[src/types.ts:22](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/types.ts#L22)
+[src/types.ts:22](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/types.ts#L22)
 
 
 <a name="fetch-toolkit-api-referenceinterfacesrequestinittoolkitmd"></a>
@@ -1940,7 +2004,7 @@ node\_modules/typescript/lib/lib.dom.d.ts:1595
 
 ###### Source
 
-[src/types.ts:36](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/types.ts#L36)
+[src/types.ts:36](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/types.ts#L36)
 
 ***
 
@@ -1950,7 +2014,7 @@ node\_modules/typescript/lib/lib.dom.d.ts:1595
 
 ###### Source
 
-[src/types.ts:37](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/types.ts#L37)
+[src/types.ts:37](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/types.ts#L37)
 
 ***
 
@@ -2104,7 +2168,7 @@ node\_modules/typescript/lib/lib.dom.d.ts:1613
 
 ###### Source
 
-[src/types.ts:38](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/types.ts#L38)
+[src/types.ts:38](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/types.ts#L38)
 
 ***
 
@@ -2139,7 +2203,7 @@ node\_modules/typescript/lib/lib.dom.d.ts:1615
 
 #### Source
 
-[src/types.ts:1](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/types.ts#L1)
+[src/types.ts:1](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/types.ts#L1)
 
 
 <a name="fetch-toolkit-api-referencetype-aliasesoneventcallbackmd"></a>
@@ -2172,7 +2236,7 @@ Callback type for the event
 
 #### Source
 
-[src/parallel-promise-handler.ts:48](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/parallel-promise-handler.ts#L48)
+[src/parallel-promise-handler.ts:48](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/parallel-promise-handler.ts#L48)
 
 
 <a name="fetch-toolkit-api-referencetype-aliasesparallelfunctioneventtypemd"></a>
@@ -2191,7 +2255,7 @@ Type of events that can be triggered
 
 #### Source
 
-[src/parallel-promise-handler.ts:43](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/parallel-promise-handler.ts#L43)
+[src/parallel-promise-handler.ts:43](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/parallel-promise-handler.ts#L43)
 
 ## Variables
 
@@ -2212,7 +2276,7 @@ The HTTP header for specifying the accepted response format.
 
 #### Source
 
-[src/constants.ts:5](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/constants.ts#L5)
+[src/constants.ts:5](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/constants.ts#L5)
 
 
 <a name="fetch-toolkit-api-referencevariableshttp_header_accept_jsonmd"></a>
@@ -2231,7 +2295,7 @@ The value for specifying that the response should be in JSON format.
 
 #### Source
 
-[src/constants.ts:20](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/constants.ts#L20)
+[src/constants.ts:20](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/constants.ts#L20)
 
 
 <a name="fetch-toolkit-api-referencevariableshttp_header_authorizationmd"></a>
@@ -2250,7 +2314,7 @@ The HTTP header for specifying the authorization token.
 
 #### Source
 
-[src/constants.ts:10](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/constants.ts#L10)
+[src/constants.ts:10](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/constants.ts#L10)
 
 
 <a name="fetch-toolkit-api-referencevariableshttp_header_content_typemd"></a>
@@ -2269,4 +2333,4 @@ The HTTP header for specifying the content type of the request.
 
 #### Source
 
-[src/constants.ts:15](https://github.com/bmarotta/fetch-toolkit/blob/aa1aac02e3b66a6327b57847891610052e7b53a2/src/constants.ts#L15)
+[src/constants.ts:15](https://github.com/bmarotta/fetch-toolkit/blob/4d0530a21fa9fc67b65ed64b01361c9071777ab6/src/constants.ts#L15)
