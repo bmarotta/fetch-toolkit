@@ -5,9 +5,10 @@ export {
     BasicAuthenticationProvider,
     BearerAuthenticationProvider,
 } from "./authentication";
+export { FetchGroupHandler, FetchGroupHandlerError } from "./group";
 export { FetchLogger, FetchConsoleLogger } from "./logging";
 export { FetchDecorator, FetchError, FetchHandler, HttpMethod, RequestInitToolkit } from "./types";
-export { PromiseConcurrentQueue as ParallelPromiseHandler } from "./parallel-promise-handler";
+export { PromiseConcurrentQueue, OnEventCallback, ParallelFunctionEventType } from "./parallel-promise-handler";
 export {
     HTTP_HEADER_CONTENT_TYPE,
     HTTP_HEADER_ACCEPT,

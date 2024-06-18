@@ -1,5 +1,5 @@
 import * as ftModule from "../src/fetch-toolkit";
-import * as util from "../src/util";
+import * as util from "../src/utils";
 import { FetchError, RequestInitToolkit } from "../src/types";
 
 describe("fetchToolkit Core", () => {

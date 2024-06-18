@@ -1,4 +1,4 @@
-import { joinUrl } from "../src/url";
+import { joinUrl } from "../src/utils";
 
 describe("joinUrl", () => {
     it("should join the given arguments into a valid URL", () => {

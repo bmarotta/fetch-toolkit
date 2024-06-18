@@ -1,6 +1,6 @@
 import { HTTP_HEADER_ACCEPT, HTTP_HEADER_ACCEPT_JSON } from "./constants";
 import { FetchError, RequestInitToolkit } from "./types";
-import { generateUidBasedOnTimestamp } from "./util";
+import { generateUidBasedOnTimestamp } from "./utils";
 
 /**
  * Helper method to get a response as JSON. Throws a FetchError in case of faulty Status code

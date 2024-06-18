@@ -20,6 +20,10 @@ If you are running your application in the browser, you are all set. If you are 
 
 `npm install node-fetch -s`
 
+# API Reference
+
+For full API Reference check [here](api.md)
+
 # Basic Usage
 
 ## Making simple REST API calls

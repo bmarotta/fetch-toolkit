@@ -1,3 +1,25 @@
+import crypto from "crypto";
+
+/**
+ * Generate a unique id based on the current timestamp
+ * @param randomPrecision Number of random bytes to append to the timestamp
+ * @returns A unique id
+ */
+export function generateUidBasedOnTimestamp(randomPrecision = 6) {
+    const randomValues = crypto.randomBytes(randomPrecision);
+    return (
+        new Date()
+            .toISOString()
+            .substring(2)
+            .replace(/[:\-TZ.]*/g, "") + randomValues.toString("base64")
+    );
+}
+
+/**
+ * Joins URL parts into a single URL string
+ * @param args URL parts to be joined
+ * @returns The URL
+ */
 export function joinUrl(args: string[]) {
     let hasQuery = args?.length > 0 && args[0].indexOf("?") > -1;
     const url = args.reduce((acc, arg) => {

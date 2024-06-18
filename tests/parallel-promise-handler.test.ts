@@ -1,4 +1,4 @@
-import { generateUidBasedOnTimestamp } from "../src/util";
+import { generateUidBasedOnTimestamp } from "../src/utils";
 import {
     PromiseConcurrentQueue,
     PromiseConcurrentQueueError,

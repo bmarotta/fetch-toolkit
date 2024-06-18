@@ -9,7 +9,7 @@ export abstract class AuthenticationProvider implements FetchDecorator {
 
     /**
      * Decorate the request with the Authorization header.
-     * @param url URL to decorate. Irrelevant for this implementation
+     * @param _url URL to decorate. Irrelevant for this implementation
      * @param init Fetch options
      */
     public async decorateRequest(_url: string, init: RequestInit) {

@@ -1,19 +1,39 @@
+/**
+ * Represents an API client that makes HTTP requests to a specified base URL.
+ */
 import { AuthenticationProvider } from "./authentication";
 import { fetchJson } from "./fetch-toolkit";
 import { FetchGroupHandler } from "./group";
 import { FetchLogger } from "./logging";
 import { FetchDecorator, HttpMethod, RequestInitToolkit } from "./types";
-import { joinUrl } from "./url";
+import { joinUrl } from "./utils";
 
-// Params type is defined as a collection og strings in nodes: string[][] | Record<string, string> | string | URLSearchParams
-// Nevertheless this loses the power of having strongly types params
-// For this reason we decided to set the ParamsType as any
+/**
+ * The type for the parameters in the API call.
+ */
+// In node, Params type is defined as: string[][] | Record<string, string> | string | URLSearchParams
+// Nevertheless this loses the power of having rich object types for params
+// For this reason it was decided to set the ParamsType to any
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ParamsType = any;
 
+/**
+ * Represents an API client that makes HTTP requests to a specified base URL.
+ */
 export class API {
+    /**
+     * The handler for managing parallel requests (optional). See {@link FetchGroupHandler}.
+     */
     groupHandler?: FetchGroupHandler;
 
+    /**
+     * Creates an instance of the API client.
+     * @param baseUrl The base URL of the API.
+     * @param authentication Optional authentication provider for the API (see {@link AuthenticationProvider})
+     * @param maxParallel Optional maximum number of parallel requests to be handled. If not provided, no limit is set.
+     * @param logger Optional logger for the API (see {@link FetchLogger})
+     * @param customDecorators Optional custom decorators for the API (see {@link FetchDecorator})
+     */
     constructor(
         public readonly baseUrl: string,
         public authentication?: AuthenticationProvider,
@@ -26,6 +46,15 @@ export class API {
         }
     }
 
+    /**
+     * Makes an HTTP request to the API. The method returns the defined return type. 
+     * Please note that no validation is done on the return type.
+     * @param method The HTTP method of the request.
+     * @param endpoint The endpoint of the request.
+     * @param params The query parameters of the request.
+     * @param body The body of the request.
+     * @returns A promise that resolves to the defined return.
+     */
     async call<T>(
         method: HttpMethod,
         endpoint: string,
@@ -59,22 +88,61 @@ export class API {
         return fetchJson<T>(fullUrl, options);
     }
 
+    /**
+     * Makes a GET request to the API. The method returns the defined return type. 
+     * Please note that no validation is done on the return type.
+     * @param endpoint The endpoint of the request.
+     * @param params The query parameters of the request.
+     * @returns A promise that resolves to the response data.
+     */
     async get<T>(endpoint: string, params?: ParamsType): Promise<T> {
         return this.call<T>("GET", endpoint, params);
     }
 
+    /**
+     * Makes a DELETE request to the API. The method returns the defined return type. 
+     * Please note that no validation is done on the return type.
+     * @param endpoint The endpoint of the request.
+     * @param params The query parameters of the request.
+     * @param body The body of the request.
+     * @returns A promise that resolves to the response data.
+     */
     async delete<T>(endpoint: string, params?: ParamsType, body?: unknown): Promise<T> {
         return this.call<T>("DELETE", endpoint, params, body);
     }
 
+    /**
+     * Makes a PATCH request to the API. The method returns the defined return type. 
+     * Please note that no validation is done on the return type.
+     * @param endpoint The endpoint of the request.
+     * @param body The body of the request.
+     * @param params The query parameters of the request.
+     * @returns A promise that resolves to the response data.
+     */
     async patch<T>(endpoint: string, body: unknown, params?: ParamsType): Promise<T> {
         return this.call<T>("PATCH", endpoint, params, body);
     }
 
+    /**
+     * Makes a POST request to the API. The method returns the defined return type. 
+     * Please note that no validation is done on the return type.
+     * @param endpoint The endpoint of the request.
+     * @param body The body of the request.
+     * @param params The query parameters of the request.
+     * @returns A promise that resolves to the response data.
+     */
     async post<T>(endpoint: string, body: unknown, params?: ParamsType): Promise<T> {
         return this.call<T>("POST", endpoint, params, body);
     }
 
+    /**
+     * Makes a PUT request to the API. The method returns the defined return type. 
+     * Please note that no validation is done on the return type.
+     * @param endpoint The endpoint of the request.
+     * @param body The body of the request.
+     * @param params The query parameters of the request.
+     * @returns A promise that resolves to the response data.
+     */
     async put<T>(endpoint: string, body: unknown, params?: ParamsType): Promise<T> {
         return this.call<T>("PUT", endpoint, params, body);
     }

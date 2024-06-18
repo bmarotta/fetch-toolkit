@@ -11,7 +11,7 @@
     "watch": "rollup -c -w",
     "lint": "npx eslint src/**/* --fix",
     "lint-build": "npx eslint src/** --no-error-on-unmatched-pattern",
-    "doc": "npx typedoc --plugin typedoc-plugin-markdown --out temp-docs src/index.ts & rimraf temp-docs/README.md & concat-md --toc --decrease-title-levels --dir-name-as-title temp-docs > component.md & rimraf temp-docs",
+    "doc": "npx typedoc --plugin typedoc-plugin-markdown --excludePrivate --out temp-docs/fetch-toolkit-API-reference src/index.ts & rimraf temp-docs/fetch-toolkit-API-reference/README.md & concat-md --toc --decrease-title-levels --dir-name-as-title temp-docs > api.md & rimraf temp-docs",
     "coverage": "jest --coverage",
     "make-badges": "coverage-badges"
   },
@@ -49,8 +49,8 @@
     "rollup-plugin-terser": "^7.0.2",
     "ts-jest": "^28.0.8",
     "tslib": "^2.4.0",
-    "typedoc": "^0.23.6",
-    "typedoc-plugin-markdown": "^3.13.3",
+    "typedoc": "^0.25.13",
+    "typedoc-plugin-markdown": "^4.0.3",
     "typescript": "^4.8.4"
   }
 }
