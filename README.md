@@ -1,4 +1,4 @@
-![Coverage](./badges/badges.svg)
+![build+tests](https://github.com/bmarotta/fetch-toolkit/actions/workflows/build-and-test.yml/badge.svg) ![Coverage](./badges/badges.svg)
 
 # fetch-toolkit
 Fetch API Toolkit for increased productivity.
