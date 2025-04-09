@@ -1,17 +1,17 @@
-import crypto from "crypto";
-
 /**
  * Generate a unique id based on the current timestamp
  * @param randomPrecision Number of random bytes to append to the timestamp
  * @returns A unique id
  */
 export function generateUidBasedOnTimestamp(randomPrecision = 6) {
-    const randomValues = crypto.randomBytes(randomPrecision);
+    const randomValues = Array.from({ length: randomPrecision }, () =>
+        Math.floor(Math.random() * 256)
+    );
     return (
         new Date()
             .toISOString()
             .substring(2)
-            .replace(/[:\-TZ.]*/g, "") + randomValues.toString("base64")
+            .replace(/[:\-TZ.]*/g, "") + String.fromCharCode(...randomValues)
     );
 }
 
