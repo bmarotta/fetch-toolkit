@@ -81,11 +81,37 @@ export class API {
             };
             options.body = JSON.stringify(body);
         }
-        const paramStr = params ? new URLSearchParams(params).toString() : "";
+        const paramStr = params ? this.convertParamsToQueryString(params) : "";
         const fullUrl = paramStr
             ? joinUrl([this.baseUrl, endpoint, "?" + paramStr])
             : joinUrl([this.baseUrl, endpoint]);
         return fetchJson<T>(fullUrl, options);
+    }
+
+    /**
+     * Converts the parameters to a query string.
+     * @param params The parameters to convert.
+     * @returns The query string.
+     */
+    public convertParamsToQueryString(params: ParamsType): string {
+        if (typeof params === "string") {
+            return params;
+        }
+        const urlSearchParams =
+            (params instanceof URLSearchParams) ?
+                params :
+                new URLSearchParams(
+                    typeof params === "object" && !Array.isArray(params) ?
+                        this.replaceDatesInParamsByIsoString(params) : params);
+
+        return urlSearchParams.toString();
+    }
+
+    private replaceDatesInParamsByIsoString(params: ParamsType): Record<string, unknown> {
+        return Object.entries(params).reduce((acc, [key, value]) => {
+            acc[key] = value instanceof Date ? value.toISOString() : value;
+            return acc;
+        }, {} as Record<string, unknown>);
     }
 
     /**

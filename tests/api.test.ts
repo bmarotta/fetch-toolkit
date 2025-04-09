@@ -146,7 +146,73 @@ describe("API", () => {
             // Assert
             expect(authProvider).toBeInstanceOf(BasicAuthenticationProvider);
         });
+    });
 
-        // Add more test cases for other authentication providers
+    describe("convertParamsToQueryString", () => {
+        it("should convert a plain object to a query string", () => {
+            // Arrange
+            const params = { page: 1, limit: 10 };
+
+            // Act
+            const result = api.convertParamsToQueryString(params);
+
+            // Assert
+            expect(result).toBe("page=1&limit=10");
+        });
+
+        it("should convert a URLSearchParams object to a query string", () => {
+            // Arrange
+            const params = new URLSearchParams({ search: "test", sort: "asc" });
+
+            // Act
+            const result = api.convertParamsToQueryString(params);
+
+            // Assert
+            expect(result).toBe("search=test&sort=asc");
+        });
+
+        it("should handle string parameters directly", () => {
+            // Arrange
+            const params = "custom=query&value=42";
+
+            // Act
+            const result = api.convertParamsToQueryString(params);
+
+            // Assert
+            expect(result).toBe("custom=query&value=42");
+        });
+
+        it("should convert a plain object with Date values to ISO strings", () => {
+            // Arrange
+            const params = { startDate: new Date("2023-01-01T00:00:00Z"), endDate: new Date("2023-12-31T23:59:59Z") };
+
+            // Act
+            const result = api.convertParamsToQueryString(params);
+
+            // Assert
+            expect(result).toBe("startDate=2023-01-01T00%3A00%3A00.000Z&endDate=2023-12-31T23%3A59%3A59.000Z");
+        });
+
+        it("should handle an empty object", () => {
+            // Arrange
+            const params = {};
+
+            // Act
+            const result = api.convertParamsToQueryString(params);
+
+            // Assert
+            expect(result).toBe("");
+        });
+
+        it("should handle an array of key-value pairs", () => {
+            // Arrange
+            const params = [["key1", "value1"], ["key2", "value2"]];
+
+            // Act
+            const result = api.convertParamsToQueryString(params);
+
+            // Assert
+            expect(result).toBe("key1=value1&key2=value2");
+        });
     });
 })
